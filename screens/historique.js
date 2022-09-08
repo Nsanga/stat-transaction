@@ -20,8 +20,9 @@ const Historique = () => {
           </Button>
       </HStack>
             </VStack>
-      <ItemTransaction titre={'orange money'}/>
-        </VStack>
+          
+            <ItemTransaction titre={'mtn'} description={"description"}/>
+                  </VStack>
 
        
     </Stack>;

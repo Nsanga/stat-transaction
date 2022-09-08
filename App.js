@@ -10,7 +10,7 @@ const App = () => {
   return(
     <NativeBaseProvider>
         <Historique />
-    </NativeBaseProvaider>
+    </NativeBaseProvider>
   );
 };
 export default App;

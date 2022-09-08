@@ -5,6 +5,7 @@ import { ImageBackground, Dimensions } from 'react-native';
 import { Input, Icon, Stack, Pressable, Center, NativeBaseProvider, Text } from "native-base";
 import { Image, VStack, Heading, Link, HStack, FormControl, Button } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
+import loginImage from "../assets/login.png"
 
 const Login = () => {
   const [show, setShow] = React.useState(false);
@@ -16,7 +17,7 @@ const Login = () => {
       </Heading>
     </VStack>
     <VStack alignSelf="center" mt="5">
-      <Image source={require("./assets/login.png")} alt="Alternate Text" width="250" height="200" resizeMode='stretch' />
+      <Image source={loginImage} alt="Alternate Text" width="250" height="200" resizeMode='stretch' />
     </VStack>
 
     <VStack space={4} mt="5"> 
