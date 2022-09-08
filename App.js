@@ -9,7 +9,7 @@ import Login from './screens/login';
 const App = () => {
   return(
     <NativeBaseProvider>
-        <Historique />
+        <Historique />  
     </NativeBaseProvider>
   );
 };
