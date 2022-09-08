@@ -5,7 +5,7 @@ import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
 const Accueil = () => {
   return <Stack w="100%">
-    <VStack backgroundColor="#1a87dd" borderBottomLeftRadius={'50'} borderBottomRightRadius={'50'} height="262">
+    <VStack backgroundColor="#1a87dd" borderBottomLeftRadius={'50'} borderBottomRightRadius={'50'} height="254">
       <Box safeAreaTop />
       <Heading size="lg" alignSelf="left" mt="12" margin={'7'} color="#fff">
         Call Box 266360
@@ -14,7 +14,7 @@ const Accueil = () => {
         Solde
       </Heading>
       <Heading size="2xl" alignSelf="left" mt="1" margin={'7'} color="#fff">
-        500 000 XAF
+        0.0.0 000 XAF
       </Heading>
     
     </VStack>
@@ -40,7 +40,7 @@ const Accueil = () => {
         </HStack>
       </VStack>
       <VStack>
-        <Text>Dernieres transactions</Text>
+        <Text space={3} margin={'3'}>Dernières transactions</Text>
       </VStack>
     </Stack>;
 };

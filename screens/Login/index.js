@@ -5,7 +5,7 @@ import { ImageBackground, Dimensions } from 'react-native';
 import { Input, Icon, Stack, Pressable, Center, NativeBaseProvider, Text } from "native-base";
 import { Image, VStack, Heading, Link, HStack, FormControl, Button } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
-import loginImage from "../assets/login.png"
+import loginImage from "../../assets/login.png";
 
 const Login = () => {
   const [show, setShow] = React.useState(false);

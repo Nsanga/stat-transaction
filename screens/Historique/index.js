@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Box, Button, Center, NativeBaseProvider, Stack, VStack, HStack, Heading, Text } from "native-base";
-import ItemTransaction from "../components/ItemTransaction"
+import ItemTransaction from "../../components/ItemTransaction"
 
 const Historique = () => {
     return <Stack w="100%">
