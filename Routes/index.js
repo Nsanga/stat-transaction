@@ -4,6 +4,7 @@ import Login from '../screens/Login';
 import Historique from '../screens/Historique';
 import Accueil from '../screens/Accueil';
 import Depot from '../screens/Depot';
+import TabViewExample from '../screens/Historique';
 
 const Stack = createStackNavigator();
 const screenOptions = {
