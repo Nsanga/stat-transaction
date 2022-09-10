@@ -12,7 +12,7 @@ const Login = () => {
   return <Stack m={'8'}>
 
     <VStack >
-      <Heading size="2xl" fontWeight="600" alignSelf="center" mt="12" >
+      <Heading size="2xl" fontWeight="600" alignSelf="center" mt="5" >
         LOGIN
       </Heading>
     </VStack>
@@ -35,15 +35,25 @@ const Login = () => {
           fontSize: "xs",
           fontWeight: "500",
           color: "indigo.500"
-        }} alignSelf="center" mt="1" >
+        }} alignSelf="flex-end" mt="1" >
           Mot de passe oublié?
         </Link>
+        
 
       </FormControl>
       <Button mt="2" backgroundColor='#1a87dd' mb="5">
         Connexion
 
       </Button>
+
+      <Link _text={{
+          fontSize: "xs",
+          fontWeight: "500",
+          color: "indigo.500"
+        }} alignSelf="center"  >
+          Vous n'avez pas de compte?
+        </Link>
+
     </VStack>
 
   </Stack>;
