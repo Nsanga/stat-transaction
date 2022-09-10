@@ -21,7 +21,7 @@ const Historique = () => {
       </HStack>
             </VStack>
           
-            <ItemTransaction titre={'Orange money'}  operator="mtn" description={"Depot effectue par 690045933 ETS ALL"} date={"09 septembre"} heure={"13:00"}/>
+            <ItemTransaction titre={'Orange money'}  operator="orange" description={"Depot effectue par 690045933 ETS ALL"} date={"09 septembre"} heure={"13:00"}/>
                   </VStack>
 
        

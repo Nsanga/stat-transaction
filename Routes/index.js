@@ -4,6 +4,7 @@ import Login from '../screens/Login';
 import Historique from '../screens/Historique';
 import Accueil from '../screens/Accueil';
 import Depot from '../screens/Depot';
+import Retrait from '../screens/Retrait';
 
 const Stack = createStackNavigator();
 const screenOptions = {
@@ -14,11 +15,12 @@ function Index() {
   return (
       <NavigationContainer>
       <Stack.Navigator
-        screenOptions={screenOptions} initialRouteName={'historique'}>
+        screenOptions={screenOptions} initialRouteName={'depot'}>
         <Stack.Screen name={'login'} component={Login} />
         <Stack.Screen name={'historique'} component={Historique} />
         <Stack.Screen name={'accueil'} component={Accueil} />
         <Stack.Screen name={'depot'} component={Depot} />
+        <Stack.Screen name={'retrait'} component={Retrait} />
       </Stack.Navigator>
     </NavigationContainer>
     )
