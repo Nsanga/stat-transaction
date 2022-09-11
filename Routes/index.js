@@ -6,6 +6,7 @@ import Accueil from '../screens/Accueil';
 import Depot from '../screens/Depot';
 import Retrait from '../screens/Retrait';
 import Inscription from '../screens/Inscription';
+import Recherche from '../screens/Recherche';
 
 const Stack = createStackNavigator();
 const screenOptions = {
@@ -16,13 +17,15 @@ function Index() {
   return (
       <NavigationContainer>
       <Stack.Navigator
-        screenOptions={screenOptions} initialRouteName={'inscription'}>
+        screenOptions={screenOptions} initialRouteName={'historique'}>
         <Stack.Screen name={'login'} component={Login} />
         <Stack.Screen name={'inscription'} component={Inscription} />
         <Stack.Screen name={'historique'} component={Historique} />
         <Stack.Screen name={'accueil'} component={Accueil} />
         <Stack.Screen name={'depot'} component={Depot} />
         <Stack.Screen name={'retrait'} component={Retrait} />
+        <Stack.Screen name={'recherche'} component={Recherche} />
+        
       </Stack.Navigator>
     </NavigationContainer>
     )

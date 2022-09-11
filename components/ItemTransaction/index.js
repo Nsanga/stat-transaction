@@ -7,7 +7,7 @@ import {Omdepot} from "../../assets/depot.png";
 const Index = ({titre,description,date,heure, operator}) => {
   return(
     <Stack >
-      <VStack ml={'3'} mb={'0'}>
+      <VStack ml={'3'} mt={'5'}>
         <Text textAlign='left'>{date}</Text>
       </VStack>
       <VStack alignSelf={'left'} margin='3' mt={'5' }>
