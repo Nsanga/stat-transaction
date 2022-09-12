@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Box, Button, Center, NativeBaseProvider, Stack, VStack, HStack, Heading, Text, Pressable, Divider } from "native-base";
+import { Box, Button, Center, NativeBaseProvider, Stack, VStack, HStack, Heading, Text, Pressable, Divider, Input, Icon } from "native-base";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import ItemTransaction from "../../components/ItemTransaction"
 
 const Historique = () => {
@@ -11,7 +12,16 @@ const Historique = () => {
       <Heading size="xl" alignSelf="center" mt="2" margin={'7'}>
         Historique
       </Heading>
-      <VStack>
+
+      <VStack mt={2}>
+            <HStack alignSelf={'center'} ml={2}>
+        <Input placeholder="Rechercher une transaction" width="320" height={41} borderRadius="15" fontSize="18" 
+        InputLeftElement={<Icon m="2" ml="3" size="6" color="gray.400" as={<MaterialIcons name="search" />} />}/>
+            <Icon m="2" size="6" color="#1a87dd" as={<MaterialIcons name="menu" />}/>
+          </HStack>
+      </VStack>
+
+      <VStack mt={3}>
         <VStack backgroundColor="#f6f6f6" borderRadius={'15'} width="347" height="60" alignSelf={'center'} >
           <HStack alignSelf='center'>
             <Button mt="1.5" onPress={() => setStep(0)} backgroundColor={step == 0 ? '#1a87dd' : '#f6f6f6'} width="165" height="49" fontColor="black" _text={{ color: step == 0 ? '#fff' : '#000' }} borderRadius={'10'}>
