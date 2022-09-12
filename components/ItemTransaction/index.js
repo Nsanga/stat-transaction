@@ -17,7 +17,6 @@ const Index = ({titre,description,date,heure, operator}) => {
              "https://play-lh.googleusercontent.com/pr_xGOSaZAeyCuj751Zp356_uq3UPXcgiBLYxi5k_iaCfgk-5BSopuRyUvF_ufG58kuU"
           }} >
             AJ
-            <Avatar.Badge bg="#1a87dd" />
           </Avatar>
           <VStack w="75%">
             <Text ml={'1'}>{titre}</Text>
