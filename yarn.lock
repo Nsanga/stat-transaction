@@ -6470,6 +6470,11 @@
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
   "version" "16.13.1"
 
+"react-native-biometrics@^2.2.2":
+  "integrity" "sha512-gA4G8ADHupvW7NUNhElkse6R14EbSglr97FlMEdvZrEfB6BGl808/KSyDl7+d238qu3b2AqcARQMiC1FUgDT9Q=="
+  "resolved" "https://registry.npmjs.org/react-native-biometrics/-/react-native-biometrics-2.2.2.tgz"
+  "version" "2.2.2"
+
 "react-native-codegen@^0.69.2":
   "integrity" "sha512-yPcgMHD4mqLbckqnWjFBaxomDnBREfRjDi2G/WxNyPBQLD+PXUEmZTkDx6QoOXN+Bl2SkpnNOSsLE2+/RUHoPw=="
   "resolved" "https://registry.npmjs.org/react-native-codegen/-/react-native-codegen-0.69.2.tgz"
@@ -6479,6 +6484,11 @@
     "flow-parser" "^0.121.0"
     "jscodeshift" "^0.13.1"
     "nullthrows" "^1.1.1"
+
+"react-native-fingerprint-scanner@^6.0.0":
+  "integrity" "sha512-8VoKSA0Z0kWnIni96yABZfUUzfmWFXQEXcELwWr1CNLloPt3WoPptYb/6pGsBcH0YxSsW3X4+C8tl0clgyBsvA=="
+  "resolved" "https://registry.npmjs.org/react-native-fingerprint-scanner/-/react-native-fingerprint-scanner-6.0.0.tgz"
+  "version" "6.0.0"
 
 "react-native-gesture-handler@^2.6.0":
   "integrity" "sha512-IwdYdt5FKjjbRSrSqh8hoNctlYZl5DFnqSJ6buKtrl4A4gyzkrtW6WcmOFl5LnCa6Bcw+znSD77O6UiZ8qda7g=="

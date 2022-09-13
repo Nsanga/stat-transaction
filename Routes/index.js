@@ -16,7 +16,7 @@ function Index() {
   return (
       <NavigationContainer>
       <Stack.Navigator
-        screenOptions={screenOptions} initialRouteName={'retrait'}>
+        screenOptions={screenOptions} initialRouteName={'login'}>
         <Stack.Screen name={'login'} component={Login} />
         <Stack.Screen name={'inscription'} component={Inscription} />
         <Stack.Screen name={'historique'} component={Historique} />

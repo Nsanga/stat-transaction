@@ -19,11 +19,11 @@ const Index = ({titre,description,date,heure, operator}) => {
             AJ
           </Avatar>
           <VStack w="75%">
-            <Text ml={'1'}>{titre}</Text>
-            <Text ml={'1'} numberOfLines="1">{description}</Text>
+            <Text ml={'2'} fontSize="15" fontWeight="600">{titre}</Text>
+            <Text ml={'2'} numberOfLines="1">{description}</Text>
           </VStack>
           <HStack>
-            <Text textAlign='right'>{heure}</Text>
+            <Text textAlign='right' fontSize="15" fontWeight="600">{heure}</Text>
           </HStack>
         </HStack>
       </VStack>

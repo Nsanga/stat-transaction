@@ -14,11 +14,11 @@ const Historique = () => {
       </Heading>
 
       <VStack mt={2}>
-            <HStack alignSelf={'center'} ml={2}>
-        <Input placeholder="Rechercher une transaction" width="320" height={41} borderRadius="15" fontSize="18" 
-        InputLeftElement={<Icon m="2" ml="3" size="6" color="gray.400" as={<MaterialIcons name="search" />} />}/>
-            <Icon m="2" size="6" color="#1a87dd" as={<MaterialIcons name="menu" />}/>
-          </HStack>
+        <HStack alignSelf={'center'} ml={2}>
+          <Input placeholder="Rechercher une transaction" width="320" height={41} borderRadius="15" fontSize="18"
+            InputLeftElement={<Icon m="2" ml="3" size="6" color="gray.400" as={<MaterialIcons name="search" />} />} />
+          <Icon m="2" size="6" color="#1a87dd" as={<MaterialIcons name="menu" />} />
+        </HStack>
       </VStack>
 
       <VStack mt={3}>
@@ -35,7 +35,7 @@ const Historique = () => {
         {step == 0 ? <ItemTransaction titre={'Orange money'} operator="orange" description={"Depot effectue par 690045933 ETS ALL"} date={"09 septembre"} heure={"13:00"} /> : <ItemTransaction titre={'mtn MoMo'} operator="mtn" description={"Depot effectue par 651670774 ETS BILL"} date={"05 septembre"} heure={"15:00"} />}
       </VStack>
 
-      <Divider width="80%" alignSelf={'center'} />
+      <Divider width="80%" alignSelf={'right'} ml={'20'}/>
     </VStack>
 
 
