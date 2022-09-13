@@ -7,13 +7,13 @@ import { Image, VStack, Heading, Link, HStack, FormControl, Button } from "nativ
 import { MaterialIcons } from "@expo/vector-icons";
 import loginImage from "../../assets/login.png";
 
-const Login = () => {
+const Login = (props) => {
   const [show, setShow] = React.useState(false);
   return <Stack m={'8'}>
 
     <VStack >
-      <Heading size="2xl" fontWeight="600" alignSelf="center" mt="12" >
-        LOGIN
+      <Heading size="2xl" fontWeight="600" alignSelf="center" mt="5" >
+        Connexion
       </Heading>
     </VStack>
     <VStack alignSelf="center" mt="5">
@@ -35,15 +35,25 @@ const Login = () => {
           fontSize: "xs",
           fontWeight: "500",
           color: "indigo.500"
-        }} alignSelf="center" mt="1" >
+        }} alignSelf="flex-end" mt="1">
           Mot de passe oublié?
         </Link>
+        
 
       </FormControl>
-      <Button mt="2" backgroundColor='#1a87dd' mb="5">
+      <Button mt="2" backgroundColor='#1a87dd' mb="5" onPress={() => props.navigation.navigate("accueil")}>
         Connexion
 
       </Button>
+
+      <Link _text={{
+          fontSize: "xs",
+          fontWeight: "500",
+          color: "indigo.500"
+        }} alignSelf="center"  onPress={() => props.navigation.navigate("inscription")}>
+          Vous n'avez pas de compte?
+        </Link>
+
     </VStack>
 
   </Stack>;

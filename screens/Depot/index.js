@@ -6,7 +6,7 @@ const Depot = () =>{
         <VStack alignSelf='center'>
             <Heading size='lg' fontWeight='600' mt='5' color="coolGray.800" _dark={{
           color: "warmGray.50"}}>
-                DEPÔT
+                DEPOT
             </Heading>
         </VStack>
         <VStack mt='10'alignSelf={'center'}>

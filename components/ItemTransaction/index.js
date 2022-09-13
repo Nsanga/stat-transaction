@@ -7,7 +7,7 @@ import {Omdepot} from "../../assets/depot.png";
 const Index = ({titre,description,date,heure, operator}) => {
   return(
     <Stack >
-      <VStack ml={'3'} mb={'0'}>
+      <VStack ml={'3'} mt={'5'}>
         <Text textAlign='left'>{date}</Text>
       </VStack>
       <VStack alignSelf={'left'} margin='3' mt={'5' }>
@@ -17,14 +17,13 @@ const Index = ({titre,description,date,heure, operator}) => {
              "https://play-lh.googleusercontent.com/pr_xGOSaZAeyCuj751Zp356_uq3UPXcgiBLYxi5k_iaCfgk-5BSopuRyUvF_ufG58kuU"
           }} >
             AJ
-            <Avatar.Badge bg="#1a87dd" />
           </Avatar>
           <VStack w="75%">
-            <Text ml={'1'}>{titre}</Text>
-            <Text ml={'1'} numberOfLines="1">{description}</Text>
+            <Text ml={'2'} fontSize="15" fontWeight="600">{titre}</Text>
+            <Text ml={'2'} numberOfLines="1">{description}</Text>
           </VStack>
           <HStack>
-            <Text textAlign='right'>{heure}</Text>
+            <Text textAlign='right' fontSize="15" fontWeight="600">{heure}</Text>
           </HStack>
         </HStack>
       </VStack>
