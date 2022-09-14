@@ -10,7 +10,7 @@ const Accueil = ({navigation}) => {
   return <Stack w="100%">
     <VStack backgroundColor="#1a87dd" borderBottomLeftRadius={'50'} borderBottomRightRadius={'50'} height="230">
       <Box safeAreaTop />
-      <Heading size="md" alignSelf="left" mt="12" margin={'7'} color="#fff">
+      <Heading size="md" mt="12" margin={'7'} color="#fff">
         Call Box 266360
       </Heading>
       <Heading size="md" alignSelf="left" mt="12" margin={'7'} color="#fff">
@@ -41,7 +41,7 @@ const Accueil = ({navigation}) => {
       </VStack>
       <VStack>
         <HStack space={3} justifyContent="center">
-          <Button mt="2" backgroundColor='#726E9D' width="165" height="49" >
+          <Button mt="2" backgroundColor='#726E9D' width="165" height="49" onPress={() =>navigation.navigate("recharge")}>
             Recharge
           </Button>
           <Button mt="2" backgroundColor='#3E7467' width="165" height="49" onPress={() =>navigation.navigate("historique")}>

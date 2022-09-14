@@ -21,7 +21,6 @@ const Historique = () => {
           <Icon m="2" size="7" color="#1a87dd" as={<MaterialIcons name="filter-list" />} />
         </HStack>
       </VStack>
-
       <VStack mt={3}>
         <VStack backgroundColor="#f6f6f6" borderRadius={'15'} width="347" height="60" alignSelf={'center'} >
           <HStack alignSelf='center'>
@@ -33,14 +32,17 @@ const Historique = () => {
             </Button>
           </HStack>
         </VStack>
-        {step == 0 ? <ItemTransaction titre={'Orange money'} operator="orange" description={"Depot effectue par 690045933 ETS ALL"} date={"09 septembre"} heure={"13:00"} /> : <ItemTransaction titre={'mtn MoMo'} operator="mtn" description={"Depot effectue par 651670774 ETS BILL"} date={"05 septembre"} heure={"15:00"} />}
+      {
+        step == 0 ? <ItemTransaction titre={'Orange money'} operator="orange" description={"Depot effectue par 690045933 ETS ALL"} date={"09 septembre"} heure={"13:00"} />
+          : <ItemTransaction titre={'mtn MoMo'} operator="mtn" description={"Depot effectue par 651670774 ETS BILL"} date={"05 septembre"} heure={"15:00"} />
+      }
+     
+
       </VStack>
 
-      <Divider width="80%" alignSelf={'right'} ml={'20'}/>
+
     </VStack>
-
-
-  </Stack>
+  </Stack >
 };
 
 export default Historique;

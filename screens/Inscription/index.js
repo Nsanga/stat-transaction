@@ -9,9 +9,9 @@ import inscriptionImage from "../../assets/inscription.png";
 
 const Inscription = () => {
   const [show, setShow] = React.useState(false);
-  return <Stack m={'8'} >
+  return <Stack  >
 
-    <VStack >
+    <VStack  >
       <Heading size="2xl" fontWeight="600" alignSelf="center">
         Inscription
       </Heading>
@@ -20,7 +20,7 @@ const Inscription = () => {
       <Image source={inscriptionImage} alt="Alternate Text" width="250" height="200" resizeMode='stretch' />
     </VStack>
 
-    <VStack space={1} > 
+    <VStack space={1} m={'8'} p={'5'} > 
       <FormControl isRequired>
         <FormControl.Label>Nom</FormControl.Label>
         <Input placeholder='Entrer votre nom' />
