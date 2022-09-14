@@ -13,6 +13,15 @@ const Accueil = ({navigation}) => {
       <Heading size="md" alignSelf="left" mt="12" margin={'7'} color="#fff">
         Call Box 266360
       </Heading>
+      <Heading size="md" alignSelf="left" mt="12" margin={'7'} color="#fff">
+       14 septembre 2022
+      </Heading>
+      <Heading size="md" alignSelf="left" mt="12" margin={'7'} color="#fff">
+        Retraits:    XAF
+      </Heading>
+      <Heading size="md" alignSelf="left" mt="12" margin={'7'} color="#fff">
+        Depots:      XAF
+      </Heading>
       <VStack>
 
         </VStack>
