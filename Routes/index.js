@@ -6,6 +6,8 @@ import Accueil from '../screens/Accueil';
 import Depot from '../screens/Depot';
 import Retrait from '../screens/Retrait';
 import Inscription from '../screens/Inscription';
+import Recharge from '../screens/Recharge';
+import MyTabs from '../screens/Navigationbar';
 
 const Stack = createStackNavigator();
 const screenOptions = {
@@ -16,13 +18,15 @@ function Index() {
   return (
       <NavigationContainer>
       <Stack.Navigator
-        screenOptions={screenOptions} initialRouteName={'login'}>
+        screenOptions={screenOptions} initialRouteName={'mytabs'}>
         <Stack.Screen name={'login'} component={Login} />
         <Stack.Screen name={'inscription'} component={Inscription} />
         <Stack.Screen name={'historique'} component={Historique} />
         <Stack.Screen name={'accueil'} component={Accueil} />
         <Stack.Screen name={'depot'} component={Depot} />
-        <Stack.Screen name={'retrait'} component={Retrait} />        
+        <Stack.Screen name={'retrait'} component={Retrait} /> 
+        <Stack.Screen name={'recharge'} component={Recharge} />
+        <Stack.Screen name={'mytabs'} component={MyTabs} />       
       </Stack.Navigator>
     </NavigationContainer>
     )
