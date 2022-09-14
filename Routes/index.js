@@ -7,8 +7,12 @@ import Depot from '../screens/Depot';
 import Retrait from '../screens/Retrait';
 import Inscription from '../screens/Inscription';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Recharge from '../screens/Recharge';
 import MyTabs from '../screens/Navigationbar';
+=======
+import Navigation from '../screens/Navigation';
+>>>>>>> 9c8723f345e36e102948814c87f5a18f1fbf2772
 =======
 import Navigation from '../screens/Navigation';
 >>>>>>> 9c8723f345e36e102948814c87f5a18f1fbf2772
@@ -23,7 +27,11 @@ function Index() {
       <NavigationContainer>
       <Stack.Navigator
 <<<<<<< HEAD
+<<<<<<< HEAD
         screenOptions={screenOptions} initialRouteName={'mytabs'}>
+=======
+        screenOptions={screenOptions} initialRouteName={'navigation'}>
+>>>>>>> 9c8723f345e36e102948814c87f5a18f1fbf2772
 =======
         screenOptions={screenOptions} initialRouteName={'navigation'}>
 >>>>>>> 9c8723f345e36e102948814c87f5a18f1fbf2772
