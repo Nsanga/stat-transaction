@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Accueil from '../Accueil';
 import Statistique from '../Statistique';
-import Compte from '../Compte';
+import MonCompte from '../Mon Compte';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,7 +18,7 @@ const MyTabs = () => {
                         iconName = "home"
                     } else if (route.name == "statistique") {
                         iconName = "stats-chart-outline"
-                    } else if (route.name == "compte") {
+                    } else if (route.name == "moncompte") {
                         iconName = "person"
                     }
                     return <Ionicons name={iconName} size={25} color={focused ? '#fff' : '#000'} />
@@ -50,7 +50,7 @@ const MyTabs = () => {
                 return {
                     headerShown: false,
                 }
-            }} name="compte" component={Compte} />
+            }} name="moncompte" component={MonCompte} />
         </Tab.Navigator>
     );
 }

@@ -41,7 +41,7 @@ const Login = (props) => {
         
 
       </FormControl>
-      <Button mt="2" backgroundColor='#1a87dd' mb="5" onPress={() => props.navigation.navigate("accueil")}>
+      <Button mt="2" backgroundColor='#1a87dd' mb="5" onPress={() => props.navigation.navigate("navigation")}>
         Connexion
 
       </Button>

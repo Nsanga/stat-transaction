@@ -1,13 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { ImageBackground, Dimensions } from 'react-native';
 import { Input, Icon, Stack, Pressable, Center, NativeBaseProvider, Text } from "native-base";
 import { Image, VStack, Heading, Link, HStack, FormControl, Button } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
 import inscriptionImage from "../../assets/inscription.png";
 
-const Inscription = () => {
+const Inscription = (props) => {
   const [show, setShow] = React.useState(false);
   return <Stack  >
 
@@ -20,7 +17,7 @@ const Inscription = () => {
       <Image source={inscriptionImage} alt="Alternate Text" width="250" height="200" resizeMode='stretch' />
     </VStack>
 
-    <VStack space={1} m={'8'} p={'5'} > 
+    <VStack space={1} m={'8'} p={'5'} mt={-5} > 
       <FormControl isRequired>
         <FormControl.Label>Nom</FormControl.Label>
         <Input placeholder='Entrer votre nom' />
@@ -44,7 +41,7 @@ const Inscription = () => {
         </Pressable>} placeholder="Entrer votre mot de passe" />
 
       </FormControl>
-      <Button mt="2" backgroundColor='#1a87dd' mb="5">
+      <Button mt="2" backgroundColor='#1a87dd' mb="5" onPress={() => props.navigation.navigate("login")}>
         S'inscrire
 
       </Button>
