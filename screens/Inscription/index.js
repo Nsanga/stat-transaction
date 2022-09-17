@@ -9,7 +9,7 @@ const Inscription = (props) => {
   return <Stack  >
 
     <VStack  >
-      <Heading size="2xl" fontWeight="600" alignSelf="center">
+      <Heading size="2xl" fontWeight="600" alignSelf="center" mt={5}>
         Inscription
       </Heading>
     </VStack>

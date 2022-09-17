@@ -20,11 +20,7 @@ const Details = () => {
                     <Text flex={1} size={'lg'} ml={8} bold>Estimation</Text>
 
                 </HStack>
-                <HStack mt={5}>
-                    <Text flex={1} fontSize={16} mr={4}>Depots</Text>
-                    <Text flex={1} fontSize={16}>500000</Text>
-                    <Text flex={1} fontSize={16} ml={8}>70%</Text>
-                </HStack>
+                
             </VStack>
 
         </VStack>

@@ -1,11 +1,28 @@
 import react from "react";
 import { VStack,Stack, HStack, Box,Heading,Icon, Text, Divider, Pressable } from "native-base";
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import * as LocalAuthentication from 'expo-local-authentication';
+import { useState, useEffect } from 'react';
 import { View, Share, onShare } from "react-native";
 
 
 
 const MonCompte = (props) => {
+
+    const [biometrics, setBiometrics] = useState(false);
+  const [renderContent, setRenderContent] = useState();
+
+  useEffect(() => {
+    (async () => {
+      const compatible = await LocalAuthentication.hasHardwareAsync();
+      setBiometrics(compatible);
+    })();
+  }, []);
+
+  const renderSecureContent = () => setRenderContent(true);
+
+
+
 
     const onShare = async () => {
         try {
@@ -54,8 +71,8 @@ const MonCompte = (props) => {
             </HStack>
             <HStack ml={5}>
             <Icon as={<Ionicons name={"finger-print"}/>} size={25} color="#000"></Icon>
-            <Text fontSize={'md'} ml={2}> Touch ID</Text>
-            <Icon as={<Ionicons name={"chevron-forward"}/>} size={25} color="#000" ml={'210'}></Icon>
+            <Text fontSize={'md'} ml={2}> Empreinte Digitale</Text>
+            <Icon as={<Ionicons name={"chevron-forward"}/>} size={25} color="#000" ml={'145'}></Icon>
             </HStack>
             
         </VStack>
