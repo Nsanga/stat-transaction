@@ -1,16 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Box, Button, Center, NativeBaseProvider, Stack, VStack, HStack, Heading, Text, Pressable, Divider, Input, Icon } from "native-base";
+import { Box, Button, Stack, VStack, HStack, Heading, Pressable, Divider, Input, Icon } from "native-base";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import ItemTransaction from "../../components/ItemTransaction";
-import Navigation from "../Navigation";
+
 
 const Historique = () => {
   const [step, setStep] = React.useState(0)
   return <Stack w="100%">
     <VStack >
       <Box safeAreaTop />
-      <Heading size="xl" alignSelf="center" mt="2" margin={'7'}>
+      <Heading fontSize={27} mt='5' color="coolGray.800" _dark={{
+          color: "warmGray.50"}} alignSelf="center" margin={'7'}>
         Historique
       </Heading>
 
@@ -39,7 +40,7 @@ const Historique = () => {
      
 
       </VStack>
-
+      <StatusBar style="auto"/>
 
     </VStack>
   </Stack >

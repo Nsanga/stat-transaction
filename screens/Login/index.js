@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { ImageBackground, Dimensions } from 'react-native';
-import { Input, Icon, Stack, Pressable, Center, NativeBaseProvider, Text } from "native-base";
+import { Input, Icon, Stack, Pressable, Box, NativeBaseProvider, Text } from "native-base";
 import { Image, VStack, Heading, Link, HStack, FormControl, Button } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
 import loginImage from "../../assets/login.png";
@@ -21,14 +21,15 @@ const Login = (props) => {
     </VStack>
 
     <VStack space={4} mt="5"> 
+    <Box alignItem='center' justifyContent='center'>
       <FormControl isRequired>
-        <FormControl.Label>ID_KIOSQUE</FormControl.Label>
-        <Input placeholder='Entrer votre code' />
+        <FormControl.Label _text={{fontSize:"md"}}>ID_KIOSQUE</FormControl.Label>
+        <Input placeholder='Entrer votre code' size={'lg'} />
       </FormControl>
-      <FormControl isRequired>
-        <FormControl.Label>Mot de passe</FormControl.Label>
-        <Input type={show ? "text" : "password"} InputRightElement={<Pressable onPress={() => setShow(!show)}>
-          <Icon as={<MaterialIcons name={show ? "visibility" : "visibility-off"} />} size={5} mr="2" color="muted.400" />
+      <FormControl mt={5} isRequired>
+        <FormControl.Label _text={{fontSize:"md"}}>MOT DE PASSE</FormControl.Label>
+        <Input size={'lg'} type={show ? "text" : "password"} InputRightElement={<Pressable onPress={() => setShow(!show)} >
+          <Icon as={<MaterialIcons name={show ? "visibility" : "visibility-off"} />}  mr="2" color="muted.400" />
         </Pressable>} placeholder="Entrer votre mot de passe" />
 
         <Link _text={{
@@ -41,7 +42,7 @@ const Login = (props) => {
         
 
       </FormControl>
-      <Button mt="2" backgroundColor='#1a87dd' mb="5" onPress={() => props.navigation.navigate("navigation")}>
+      <Button mt="2" backgroundColor='#1a87dd' mb="5" fontSize={'xl'} _text={{fontSize:"md"}} onPress={() => props.navigation.navigate("navigation")}>
         Connexion
 
       </Button>
@@ -53,6 +54,7 @@ const Login = (props) => {
         }} alignSelf="center"  onPress={() => props.navigation.navigate("inscription")}>
           Vous n'avez pas de compte?
         </Link>
+        </Box>
 
     </VStack>
 

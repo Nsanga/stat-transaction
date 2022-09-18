@@ -28,8 +28,9 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF",
         "package": "com.yourcompany.yourappname",
-      "versionCode": 1
-      }
+        "versionCode": 1
+      },
+      "package": "com.kiosque.Stat_Transaction"
     },
     "web": {
       "favicon": "./assets/favicon.png"

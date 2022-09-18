@@ -7,8 +7,8 @@ import ItemTransaction from "../../components/ItemTransaction"
 const Accueil = ({navigation}) => {
   const [show, setShow] = React.useState(false);
   return <Stack w="100%">
-    <VStack backgroundColor="#1a87dd" borderBottomLeftRadius={'50'} borderBottomRightRadius={'50'} height="230">
-      <Box safeAreaTop />
+    <VStack backgroundColor="#1a87dd" borderBottomLeftRadius={'50'} borderBottomRightRadius={'50'} height="270">
+      <Box safeAreaTop alignItem={'center'} justifyContent='center'/>
       <Heading size="xl" mt="5" margin={'5'} color="#fff" alignSelf={'center'}>
         Call Box 266360
       </Heading>
@@ -16,10 +16,10 @@ const Accueil = ({navigation}) => {
        14 septembre 2022
       </Heading>
       <Heading size="md"  mt="0" margin={'2'} color="#fff" alignSelf={'center'}>
-        Retraits:    XAF
+        Retraits: 500000 XAF
       </Heading>
       <Heading size="md"  mt="0" margin={'2'} color="#fff" alignSelf={'center'}>
-        Depots:      XAF
+        Depots: 500000 XAF
       </Heading>
       <VStack>
 
@@ -52,7 +52,7 @@ const Accueil = ({navigation}) => {
         <HStack>
         <Text fontSize="16" fontWeight="600" textAlign={"left"}>Dernières transactions</Text>
         <Pressable onPress={() =>navigation.navigate("historique")}>
-        <Text color='#1a87dd' fontWeight="600" fontSize="16"  ml='24'>Voir plus</Text>
+        <Text color='#1a87dd' fontWeight="600" fontSize="16" textAlign="right" ml='24'>Voir plus</Text>
         </Pressable>
         </HStack>
       </VStack>
