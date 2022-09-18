@@ -17,18 +17,18 @@ const Historique = () => {
 
       <VStack mt={2}>
         <HStack alignSelf={'center'} ml={2}>
-          <Input placeholder="Rechercher une transaction" width="320" height={10} borderRadius="30" fontSize="14" 
+          <Input placeholder="Rechercher une transaction" width="320" height={10} borderRadius="40" fontSize="14" 
             InputLeftElement={<Icon m="2" ml="3" size="6" color="gray.400" as={<MaterialIcons name="search" />} />} />
-          <Icon m="2" size="7" color="#1a87dd" as={<MaterialIcons name="filter-list" />} />
+          <Icon m="3" size="md" color="#1a87dd" as={<MaterialIcons name="filter-list" />} />
         </HStack>
       </VStack>
       <VStack mt={3}>
         <VStack backgroundColor="#f6f6f6" borderRadius={'15'} width="347" height="60" alignSelf={'center'} >
           <HStack alignSelf='center'>
-            <Button mt="1.5" onPress={() => setStep(0)} backgroundColor={step == 0 ? '#1a87dd' : '#f6f6f6'} width="165" height="49" fontColor="black" _text={{ color: step == 0 ? '#fff' : '#000' }} borderRadius={'10'}>
+            <Button mt="1.5" _text={{fontSize:"lg"}} onPress={() => setStep(0)} backgroundColor={step == 0 ? '#1a87dd' : '#f6f6f6'} width="165" height="49" fontColor="black" _text={{ color: step == 0 ? '#fff' : '#000' }} borderRadius={'10'}>
               Dépots
             </Button>
-            <Button mt="1.5" mb={'2'} onPress={() => setStep(1)} backgroundColor={step == 1 ? '#F47A08' : '#f6f6f6'} width="165" height="49" borderRadius={'10'} _text={{ color: step == 1 ? '#fff' : '#000' }}>
+            <Button mt="1.5" _text={{fontSize:"lg"}} mb={'2'} onPress={() => setStep(1)} backgroundColor={step == 1 ? '#F47A08' : '#f6f6f6'} width="165" height="49" borderRadius={'10'} _text={{ color: step == 1 ? '#fff' : '#000' }}>
               Retraits
             </Button>
           </HStack>

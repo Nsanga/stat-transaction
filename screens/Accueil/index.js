@@ -28,32 +28,34 @@ const Accueil = ({navigation}) => {
     
     </VStack>
 
-      <VStack>
-      <HStack space={3} justifyContent="center">
-          <Button mt="2" backgroundColor='#1a87dd' width="165" height="49" onPress={() => navigation.navigate("depot")}>
+      <VStack mt={5}>
+      <HStack space={1} justifyContent="center">
+          <Button backgroundColor='#1a87dd' _text={{fontSize:"lg"}} width="165" height="49" onPress={() => navigation.navigate("depot")}>
             Dépots
           </Button>
-          <Button mt="2" backgroundColor='#F47A08' width="165" height="49" onPress={() => navigation.navigate("retrait")}>
+          <Button backgroundColor='#F47A08' _text={{fontSize:"lg"}} width="165" height="49" onPress={() => navigation.navigate("retrait")}>
             Retraits
           </Button>
       </HStack>
       </VStack>
       <VStack>
-        <HStack space={3} justifyContent="center">
-          <Button mt="2" backgroundColor='#726E9D' width="165" height="49" onPress={() =>navigation.navigate("recharge")}>
+        <HStack space={1} justifyContent="center" mt="3">
+          <Button backgroundColor='#726E9D' _text={{fontSize:"lg"}} width="165" height="49" onPress={() =>navigation.navigate("recharge")}>
             Solde
           </Button>
-          <Button mt="2" backgroundColor='#3E7467' width="165" height="49" onPress={() =>navigation.navigate("historique")}>
+          <Button backgroundColor='#3E7467' _text={{fontSize:"lg"}} width="165" height="49" onPress={() =>navigation.navigate("historique")}>
             Historique
           </Button>
         </HStack>
       </VStack>
-      <VStack margin={'4'}>
+      <VStack margin={'4'} mt={5}>
+        <HStack>
         <HStack>
         <Text fontSize="16" fontWeight="600" textAlign={"left"}>Dernières transactions</Text>
-        <Pressable onPress={() =>navigation.navigate("historique")}>
-        <Text color='#1a87dd' fontWeight="600" fontSize="16" textAlign="right" ml='24'>Voir plus</Text>
-        </Pressable>
+        </HStack>
+        <HStack mt={'-2.5'}>
+        <Button _text={{color:"#1a87dd", fontWeight:"600", fontSize:"16", textAlign:"right"}} variant={'link'} ml='24' onPress={() =>navigation.navigate("historique")}>Voir plus</Button>
+        </HStack>
         </HStack>
       </VStack>
       
