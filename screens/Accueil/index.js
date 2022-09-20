@@ -48,7 +48,7 @@ const Accueil = ({navigation}) => {
           </Button>
         </HStack>
       </VStack>
-      <VStack margin={'4'} mt={5}>
+      <VStack margin={'4'} mt={5} mb={5}>
         <HStack>
         <HStack>
         <Text fontSize="16" fontWeight="600" textAlign={"left"}>Dernières transactions</Text>
@@ -61,7 +61,9 @@ const Accueil = ({navigation}) => {
       
       <VStack mt={'-12'}>
 
-      <ItemTransaction titre={'Orange money'} operator="orange" description={"Depot effectue par 690045933 ETS ALL"} heure={"13:00"} />
+      <ItemTransaction titre={'Orange money'} 
+      operator="orange" 
+      description={"Depot effectue par 690045933 ETS ALLIANCE INDEPENDANT35 to 690197100 DIPITA EPALLE. Informations detaillees: Montant de transaction : 2000 FCFA, ID transaction : CI220822.1921.C04642, Frais : 0 FCFA, Commission : 0 FCFA, Montant Net du Credit : 2000 FCFA, Nouveau Solde : 20022.43 FCFA."} heure={"13:00"} />
       
       </VStack>
     </Stack>;

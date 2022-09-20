@@ -13,13 +13,13 @@ const DetailsDepot = (props) =>{
           
         <VStack>
         <Box alignItem={'center'} justifyContent={'center'} mt='24'>
-        <VStack alignSelf={'left'}>
+        <VStack>
         <Text fontSize={20}>Nom:</Text>
         </VStack>
-        <VStack mt='5' alignSelf={'left'} fontSize={16}>
+        <VStack mt='5' fontSize={16}>
         <Text fontSize={20}>Téléphone:</Text>
         </VStack>  
-        <VStack mt='5' alignSelf={'left'}>
+        <VStack mt='5'>
         <Text fontSize={20}>Montant:</Text>
         </VStack>              
         <VStack alignSelf={'center'} mt={'12'}>

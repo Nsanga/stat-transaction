@@ -1,19 +1,24 @@
 import React from 'react';
-import {HStack, Stack, Text, VStack, Image} from "native-base";
+import { TouchableOpacity } from 'react-native';
+import {HStack, Stack, Text, VStack, Pressable} from "native-base";
 import { Avatar } from 'native-base';
+import { useState } from 'react';
+import ItemModal from "../ItemModal";
 
 
 
 const Index = ({titre,description,date,heure, operator}) => {
+  const [showModal, setShowModal]=useState(false);
   return(
     <Stack >
       <VStack ml={'3'} mt={'5'}>
         <Text textAlign='left'>{date}</Text>
       </VStack>
+      <TouchableOpacity onPress={() => setShowModal(true)} hitSlop={{top:-10, bottom:0}}>
       <VStack  margin='3' mt={'5' }>
         <HStack >
           <Avatar resizeMode='stretch' key={operator} source={{
-            url: operator == "mtn" ? "https://play-lh.googleusercontent.com/LTwt4DZRCzi45iNjN_HsX7TTxJPz9Y1dFgN05jj0J89yDpoeO2I2_bbEz8cl84NK34g=s180-rw" :
+            uri: operator == "mtn" ? "https://play-lh.googleusercontent.com/LTwt4DZRCzi45iNjN_HsX7TTxJPz9Y1dFgN05jj0J89yDpoeO2I2_bbEz8cl84NK34g=s180-rw" :
              "https://play-lh.googleusercontent.com/pr_xGOSaZAeyCuj751Zp356_uq3UPXcgiBLYxi5k_iaCfgk-5BSopuRyUvF_ufG58kuU"
           }} >
             AJ
@@ -27,7 +32,10 @@ const Index = ({titre,description,date,heure, operator}) => {
           </HStack>
         </HStack>
       </VStack>
+      </TouchableOpacity>
+      <ItemModal titre={titre} description={description} showModal={showModal} setShowModal={setShowModal}/>
     </Stack>
+    
   );
 };
 export default Index;

@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { ImageBackground, Dimensions } from 'react-native';
-import { Input, Icon, Stack, Pressable, Box, NativeBaseProvider, Text } from "native-base";
+import { Input, Icon, Stack, Pressable, Box, NativeBaseProvider, KeyboardAvoidingView } from "native-base";
 import { Image, VStack, Heading, Link, HStack, FormControl, Button } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
 import loginImage from "../../assets/login.png";
@@ -20,6 +20,7 @@ const Login = (props) => {
       <Image source={loginImage} alt="Alternate Text" width="250" height="200" resizeMode='stretch' />
     </VStack>
 
+    <KeyboardAvoidingView behavior="position" >
     <VStack space={4} mt="5"> 
     <Box alignItem='center' justifyContent='center'>
       <FormControl isRequired>
@@ -57,6 +58,8 @@ const Login = (props) => {
         </Box>
 
     </VStack>
+    </KeyboardAvoidingView>
+
 
   </Stack>;
   

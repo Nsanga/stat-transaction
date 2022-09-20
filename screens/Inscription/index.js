@@ -1,13 +1,16 @@
 import React from 'react';
-import { Input, Icon, Stack, Pressable, Box, NativeBaseProvider, Text } from "native-base";
+import { Input, Icon, Stack, Pressable, Box, NativeBaseProvider, Text, ScrollView, KeyboardAvoidingView } from "native-base";
 import { Image, VStack, Heading, Link, HStack, FormControl, Button } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
 import inscriptionImage from "../../assets/inscription.png";
+import { Dimensions } from 'react-native';
 
 const Inscription = (props) => {
+  const {width} = Dimensions.get("window");
   const [show, setShow] = React.useState(false);
   return <Stack m={'8'}>
-
+    <ScrollView showsVerticalScrollIndicator = {false}>
+    <KeyboardAvoidingView behavior="position" >
     <VStack>
       <Box alignItem='center' justifyContent='center'>
         <VStack>
@@ -52,6 +55,8 @@ const Inscription = (props) => {
         </VStack>
       </Box>
     </VStack>
+    </KeyboardAvoidingView>
+    </ScrollView>
 
   </Stack >;
 
