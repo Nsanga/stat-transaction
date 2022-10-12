@@ -1,11 +1,47 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { Box, Button, Stack, VStack, HStack, Heading, Pressable, Divider, Input, Icon } from "native-base";
+import React, { useEffect, useState } from 'react';
+import { Box, Button, Stack, VStack, HStack, Heading, Pressable, ScrollView, Input, Icon } from "native-base";
+import {RefreshControl} from 'react-native';
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import ItemTransaction from "../../components/ItemTransaction";
+import * as SQLite from "expo-sqlite";
 
 
 const Historique = () => {
+  const [result, setResult] = useState([]);
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+  }, []);
+
+  const db = SQLite.openDatabase("db.db");
+
+  useEffect(() => {
+    getTransactions();
+    setRefreshing(false)
+  }, [refreshing])
+
+  const getTransactions = () => {
+    
+    // is text empty?
+    db.transaction(
+      (tx) => {
+        try {
+          tx.executeSql("select * from operation", [user?.id], (_, { rows }) => {
+            setResult(rows._array);
+            console.log(rows._array)
+            
+          })
+        }
+        catch (e) {
+          console.log(e)
+        }
+      }
+    )
+  };
+
+
   const [step, setStep] = React.useState(0)
   return <Stack w="100%">
     <VStack >
@@ -35,18 +71,30 @@ const Historique = () => {
           </HStack>
         </VStack>
 
+        <ScrollView
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+            />
+          }>
+          {result.map((item, i) => {
+            return <VStack>
 
-          {
-            step == 0 ? <ItemTransaction titre={'Orange money'} 
-            operator="orange" 
-            description={"Depot effectue par 690045933 ETS ALLIANCE INDEPENDANT35 to 690197100 DIPITA EPALLE. Informations detaillees: Montant de transaction : 2000 FCFA, ID transaction : CI220822.1921.C04642, Frais : 0 FCFA, Commission : 0 FCFA, Montant Net du Credit : 2000 FCFA, Nouveau Solde : 20022.43 FCFA."} 
-            date={"09 septembre"} heure={"13:00"} />
-              : <ItemTransaction titre={'MTN MoMo'} operator="mtn" description={"Depot effectue par 651670774 ETS BILL to 690197100 DIPITA EPALLE. Informations detaillees: Montant de transaction : 18000 FCFA, ID transaction : CI220822.1301.B45207, Frais : 0 FCFA, Commission : 0 FCFA, Montant Net du Credit : 18000 FCFA, Nouveau Solde : 18022.43 FCFA."} 
-              date={"05 septembre"} 
-              heure={"15:00"} />
-          }
-          
-         
+
+            {
+              step == 0 ? <ItemTransaction key={i} titre={item.operateur}
+                operator={item.operateur}
+                description={"Depot effectue par " + user?.telephone + " vers " + item.telephone + ". Informations detaillees: Montant de transaction : 2000 FCFA, ID transaction : CI220822.1921.C04642, Frais : 0 FCFA, Commission : 0 FCFA, Montant Net du Credit : 2000 FCFA, Nouveau Solde : 20022.43 FCFA."}
+                date={moment(item.datetransaction).format("LL")} heure={"13:00"} />
+                : <ItemTransaction key={i} titre={item.operateur} operator={item.operateur} description={"Retrait effectue de " + item.telephone + " vers " + user?.telephone + ". Informations detaillees: Montant de transaction : 2000 FCFA, ID transaction : CI220822.1921.C04642, Frais : 0 FCFA, Commission : 0 FCFA, Montant Net du Credit : 2000 FCFA, Nouveau Solde : 20022.43 FCFA."}
+                  date={moment(item.datetransaction).format("LL")}
+                  heure={"15:00"} />
+            }
+            </VStack>
+          })
+        }
+        </ScrollView>
 
 
       </VStack>

@@ -4,7 +4,6 @@ import Login from '../screens/Login';
 import Historique from '../screens/Historique';
 import Navigation from '../screens/Navigation';
 import Depot from '../screens/Depot';
-import Detailsdepot from '../screens/Detailsdepot';
 import Retrait from '../screens/Retrait';
 import Inscription from '../screens/Inscription';
 import Details from '../screens/Details';
@@ -26,7 +25,6 @@ function Index() {
         <Stack.Screen name={'inscription'} component={Inscription} />
         <Stack.Screen name={'historique'} component={Historique} />
         <Stack.Screen name={'depot'} component={Depot} />
-        <Stack.Screen name={'detailsdepot'} component={Detailsdepot}/>
         <Stack.Screen name={'retrait'} component={Retrait} /> 
         <Stack.Screen name={'details'} component={Details} />
         <Stack.Screen name={'contacter'} component={Contacter} /> 

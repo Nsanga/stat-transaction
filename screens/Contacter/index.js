@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Button, Center, NativeBaseProvider, Stack, VStack, HStack, Heading, Text, Pressable, View, Input, Icon, Link, Divider } from "native-base";
+import { Image, Stack, VStack, HStack, Heading, Text, Pressable, View, Input, Icon, Link, Divider } from "native-base";
 import Dipita from "../../assets/dipita.jpg";
 import Emmanuel from "../../assets/emmanuel.jpg";
 

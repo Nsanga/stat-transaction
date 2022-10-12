@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "MobileMoney",
-    "slug": "MobileMoney",
+    "name": "Stat Transaction",
+    "slug": "stat-transaction",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/logo.png",

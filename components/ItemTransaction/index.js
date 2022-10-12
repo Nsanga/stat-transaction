@@ -7,7 +7,7 @@ import ItemModal from "../ItemModal";
 
 
 
-const Index = ({titre,description,date,heure, operator}) => {
+const Index = ({idTransaction,titre,description,date,heure, operator}) => {
   const [showModal, setShowModal]=useState(false);
   return(
     <Stack >
@@ -17,8 +17,8 @@ const Index = ({titre,description,date,heure, operator}) => {
       <TouchableOpacity onPress={() => setShowModal(true)} hitSlop={{top:-10, bottom:0}}>
       <VStack  margin='3' mt={'5' }>
         <HStack >
-          <Avatar resizeMode='stretch' key={operator} source={{
-            uri: operator == "mtn" ? "https://play-lh.googleusercontent.com/LTwt4DZRCzi45iNjN_HsX7TTxJPz9Y1dFgN05jj0J89yDpoeO2I2_bbEz8cl84NK34g=s180-rw" :
+          <Avatar resizeMode='stretch' key={idTransaction} source={{
+            uri: operator == "MTN MoMo" ? "https://play-lh.googleusercontent.com/LTwt4DZRCzi45iNjN_HsX7TTxJPz9Y1dFgN05jj0J89yDpoeO2I2_bbEz8cl84NK34g=s180-rw" :
              "https://play-lh.googleusercontent.com/pr_xGOSaZAeyCuj751Zp356_uq3UPXcgiBLYxi5k_iaCfgk-5BSopuRyUvF_ufG58kuU"
           }} >
             AJ
