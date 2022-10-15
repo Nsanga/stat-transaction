@@ -1,16 +1,15 @@
 import React from 'react';
-import { Image, Button, Center, NativeBaseProvider, Stack, VStack, HStack, Heading, Text, Pressable, View, Input, Icon, Link, Divider } from "native-base";
+import { Image, Stack, VStack, HStack, Heading, Text, Pressable, View, Input, Icon, Link, Divider } from "native-base";
 import Dipita from "../../assets/dipita.jpg";
 import Emmanuel from "../../assets/emmanuel.jpg";
-import Stat from "../../assets/stat.jpg";
 
 
 const Contacter = () => {
     return<Stack>
         <VStack m={5} mt={12} mb={2}>
             <Text color='#1a87dd' bold>Stat Transaction est un systeme permettant à un point Mobile Money d'effectuer
-                des dépots et retrait d'argent plus rapidement etoute fois en ressortant le pouvoir
-                d'achat des differents clients. </Text>
+                des dépots et des retraits d'argent plus rapidement toute fois en ressortant le pouvoir
+                d'achat des differents clients dans un kiosque. </Text>
         </VStack>
         <Divider mt={8}/>
         <VStack>

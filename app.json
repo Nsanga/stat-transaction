@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "interface1",
-    "slug": "interface1",
+    "name": "Stat Transaction",
+    "slug": "stat-transaction",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/icon.png",
+      "image": "./assets/logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#1a87dd"
     },
@@ -19,22 +19,21 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "y"
+      "bundleIdentifier": "com.yourcompany.yourappname",
+      "buildNumber": "1.0.0",
+      "backgroundColor": "#FFFFFF"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#FFFFFF",
+        "package": "com.yourcompany.yourappname",
+        "versionCode": 1
       },
-      "package": "com.mercuremekinda.interface1"
+      "package": "com.kiosque.Stat_Transaction"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "75ef73ba-f8f5-4dd4-82e6-4e718e7edb1d"
-      }
     }
   }
 }

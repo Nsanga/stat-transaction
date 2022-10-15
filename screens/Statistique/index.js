@@ -1,13 +1,15 @@
 import React from 'react';
-import { Box, Button, Center, NativeBaseProvider, Stack, VStack, HStack, Heading, Text, Pressable, Divider, Input, Icon, Link } from "native-base";
+import { Box, Center, NativeBaseProvider, Stack, VStack, HStack, Heading, Text, Pressable, Icon, Link } from "native-base";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
+
 const Statistique = (props) => {
-    const [step, setStep] = React.useState(0)
+    
     return <Stack w="100%">
         <VStack >
             <Box safeAreaTop />
-            <Heading size="xl" alignSelf="center" mt="2" margin={'7'}>
+            <Heading fontSize={27} mt='5' color="coolGray.800" _dark={{
+          color: "warmGray.50"}} alignSelf="center" margin={7}>
                 Statistiques
             </Heading>
 
@@ -49,9 +51,9 @@ const Statistique = (props) => {
             <VStack m={5} ml={12}>
                 <HStack mt={8} >
                     <Pressable onPress={() => props.navigation.navigate("details")}>
-                        <Text fontSize={18} bold> Details des transactions</Text>
+                        <Text fontSize={18} color="#1a87dd" bold> Details des Previsions</Text>
                     </Pressable>
-                    <Icon as={<Ionicons name={"chevron-forward"} />} size={25} color="#000"  mt={1} ml={8}></Icon>
+                    <Icon as={<Ionicons name={"chevron-forward"} />} size={25} color="#000"  mt={'0.5'} ml={8}></Icon>
 
                 </HStack>
             </VStack>
