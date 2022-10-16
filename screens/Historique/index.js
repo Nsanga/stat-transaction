@@ -28,7 +28,7 @@ const Historique = () => {
     db.transaction(
       (tx) => {
         try {
-          tx.executeSql("select * from operation", [user?.id], (_, { rows }) => {
+          tx.executeSql("select * from operation", [1], (_, { rows }) => {
             setResult(rows._array);
             console.log(rows._array)
             

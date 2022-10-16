@@ -12,12 +12,12 @@ import * as SQLite from "expo-sqlite";
 
 const Accueil = ({ navigation }) => {
   const [show, setShow] = useState(false);
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(null);
   const [load, setLoad] = React.useState(false);
   const toast = useToast();
   const [tel, setTel] = useState("");
   const [amount, setAmount] = useState("");
-  const [result, setResult] = useState([]);
+  const [result, setResult] = useState(null);
   const [refreshing, setRefreshing] = React.useState(false);
 
   const onRefresh = React.useCallback(() => {
@@ -30,7 +30,7 @@ const Accueil = ({ navigation }) => {
   useEffect(() => {
     getUser();
     getTransactions();
-    console.log('casz',user)
+    console.log('casz',user?.nom)
     setRefreshing(false)
   }, [refreshing])
 
@@ -39,7 +39,9 @@ const Accueil = ({ navigation }) => {
     try {
       const value = await AsyncStorage.getItem('@user');
       const value2 = await JSON.parse(value);
-      await setUser(value2);
+      await setUser(value2)
+      console.log("roll11",user.id);
+      console.log("roll22",value2.id);
 
     } catch (e) {
       // error reading value
@@ -47,14 +49,16 @@ const Accueil = ({ navigation }) => {
   }
 
 
-  const getTransactions = () => {
-    
+  const getTransactions = async () => {
+
     // is text empty?
-    db.transaction(
-      (tx) => {
+     db.transaction(
+       async (tx) => {
         try {
-          tx.executeSql("select * from operation where idGerant=? order by idTransaction desc limit 2", [user.id], (_, { rows }) => {
-            setResult(rows._array);
+            const value = await AsyncStorage.getItem('@user');
+            const value2 = await JSON.parse(value);
+          tx.executeSql("select * from operation where idGerant=? order by idTransaction desc limit 2;", [value2?.id], async (_, { rows }) => {
+            await setResult(rows._array);
             console.log(rows._array)
             
           })
@@ -126,16 +130,20 @@ const Accueil = ({ navigation }) => {
         onRefresh={onRefresh}
       />
     }>
+      {result?.length ?
+     <>
       {result.map((item, i) => {
-        return <VStack mt={'-12'}>
+        return <VStack key={i} mt={'-12'}>
           <ItemTransaction key={i} titre={item.operateur}
             operator={item.operateur}
             description={"Depot effectue par "+user?.telephone+ " to " +item.telephone+ ". Informations detaillees: Montant de transaction : 2000 FCFA, ID transaction : CI220822.1921.C04642, Frais : 0 FCFA, Commission : 0 FCFA, Montant Net du Credit : 2000 FCFA, Nouveau Solde : 20022.43 FCFA."}
-            heure={moment(item.heuretransaction).format("LT")}
+            heure={item.heuretransaction}
             idTransaction={item.idTransaction}/>
 
         </VStack>
       })}
+     </> : 
+      <Text alignItems={"center"} justifyContent={"center"} >Aucune transaction effectuer aujourd'hui</Text>}
     </ScrollView>
 
   </Stack>;
