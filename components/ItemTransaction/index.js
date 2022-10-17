@@ -9,7 +9,7 @@ import "moment/locale/fr";
 moment.locale("fr");
 
 
-const Index = ({ idTransaction, titre, description, date, heure, operator }) => {
+const Index = ({ idTransaction,type, titre, description, date, heure, operator }) => {
   const [showModal, setShowModal] = useState(false);
   return (
     <Stack >
@@ -27,7 +27,7 @@ const Index = ({ idTransaction, titre, description, date, heure, operator }) => 
             </Avatar>
             <VStack w="75%">
               <Text ml={'2'} fontSize="15" fontWeight="600">{titre}</Text>
-              <Text ml={'2'} numberOfLines={1}>{description}</Text>
+              <Text ml={'2'} numberOfLines={1}>{type == "depot" ? `Depot effectue par :${description}` : `Retrait effectue par :${description}`}</Text>
             </VStack>
             {heure  &&
               <HStack>

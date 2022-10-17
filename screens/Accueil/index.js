@@ -137,7 +137,8 @@ const Accueil = ({ navigation }) => {
         return <VStack key={i} mt={'-12'}>
           <ItemTransaction key={i} titre={item.operateur}
             operator={item.operateur}
-            description={"Depot effectue par "+user?.telephone+ " to " +item.telephone+ ". Informations detaillees: Montant de transaction : 2000 FCFA, ID transaction : CI220822.1921.C04642, Frais : 0 FCFA, Commission : 0 FCFA, Montant Net du Credit : 2000 FCFA, Nouveau Solde : 20022.43 FCFA."}
+            type={item.type}
+            description={user?.telephone+ " to " +item.telephone+ ". Informations detaillees: Montant de transaction : 2000 FCFA, ID transaction : CI220822.1921.C04642, Frais : 0 FCFA, Commission : 0 FCFA, Montant Net du Credit : 2000 FCFA, Nouveau Solde : 20022.43 FCFA."}
             heure={item.heuretransaction}
             idTransaction={item.idTransaction}/>
 
