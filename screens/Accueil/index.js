@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Button, Icon, NativeBaseProvider, ScrollView, Stack, VStack, HStack, Heading, Text, Divider, Input, show, Pressable, useToast } from "native-base";
+import { Box, Button, Icon, NativeBaseProvider, ScrollView, Stack, VStack, HStack, Heading, Text, Input, show, Pressable, useToast } from "native-base";
 import {RefreshControl} from 'react-native';
 import ItemTransaction from "../../components/ItemTransaction"
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -56,7 +56,7 @@ const Accueil = ({ navigation }) => {
         try {
             const value = await AsyncStorage.getItem('@user');
             const value2 = await JSON.parse(value);
-          tx.executeSql("select * from operation where idGerant=? order by idTransaction desc limit 2;", [value2?.id], async (_, { rows }) => {
+          tx.executeSql("select * from operation where idGerant=? order by idTransaction desc limit 1;", [value2?.id], async (_, { rows }) => {
             await setResult(rows._array);
             console.log(rows._array)
             
@@ -106,12 +106,12 @@ const Accueil = ({ navigation }) => {
         <Button backgroundColor='#726E9D' _text={{ fontSize: "lg" }} width="165" height="49" onPress={() => navigation.navigate("recharge")}>
           Solde
         </Button>
-        <Button backgroundColor='#3E7467' _text={{ fontSize: "lg" }} width="165" height="49" onPress={() => navigation.navigate("historique")}>
+        <Button backgroundColor='#3E7467' _text={{ fontSize: "lg" }} width="165" height="49" onPress={() => navigation.navigate("historique",{user:user})}>
           Historique
         </Button>
       </HStack>
     </VStack>
-    <VStack margin={'4'} mt={5} mb={3}>
+    <VStack margin={'4'} mt={5}>
       <HStack>
         <HStack>
           <Text fontSize="16" fontWeight="600" textAlign={"left"}>Dernières transactions</Text>
@@ -134,7 +134,7 @@ const Accueil = ({ navigation }) => {
       {result?.length ?
      <>
       {result.map((item, i) => {
-        return <VStack key={i} mt={'-12'}>
+        return <VStack key={i} mt={'-8'}>
           <ItemTransaction key={i} titre={item.operateur}
             operator={item.operateur}
             type={item.type}

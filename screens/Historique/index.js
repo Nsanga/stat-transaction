@@ -3,11 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { Box, Button,Text, Stack, VStack, HStack, Heading, Pressable, ScrollView, Input, Icon } from "native-base";
 import {RefreshControl} from 'react-native';
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import emptyImage from "../../assets/empty_illustration.png";
 import ItemTransaction from "../../components/ItemTransaction";
-import moment from "moment/moment";
 import * as SQLite from "expo-sqlite";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import moment from 'moment';
 
 
 const Historique = ({route}) => {
@@ -22,7 +21,6 @@ const Historique = ({route}) => {
   const db = SQLite.openDatabase("db.db");
 
   useEffect(() => {
-    getUser();
     getTransactions();
     typeTransaction("depot");
     setRefreshing(false)
@@ -52,7 +50,7 @@ const Historique = ({route}) => {
     db.transaction(
      async (tx) => {
         try {
-        tx.executeSql("select * from operation where idGerant=? order by idTransaction desc limit 2;", [user?.id], async (_, { rows }) => {
+        tx.executeSql("select * from operation where idGerant=? order by idTransaction desc;", [user?.id], async (_, { rows }) => {
           await setDataResult(rows._array);
           console.log(rows._array)
           
@@ -102,22 +100,17 @@ const Historique = ({route}) => {
               onRefresh={onRefresh}
             />
           }>
-            {result?.length ?
-           <>
-            {result.map((item, i) => {
+          {result.map((item, i) => {
             return <VStack>
               <ItemTransaction key={i} titre={item.operateur}
                 operator={item.operateur}
                 type={item.type}
                 description={user?.telephone + " vers " + item.telephone + ". Informations detaillees: Montant de transaction : 2000 FCFA, ID transaction : CI220822.1921.C04642, Frais : 0 FCFA, Commission : 0 FCFA, Montant Net du Credit : 2000 FCFA, Nouveau Solde : 20022.43 FCFA."}
-                date={item.datetransaction} heure={"13:00"} />
+                date={item.datetransaction} 
+                heure={item.heureTransaction} />
             </VStack>
-          })}
-          </> : 
-           <VStack alignItems="center" justifyContent={'center'} mt={24}>
-           <Image source={emptyImage} alt="Alternate Text" width="166" height="133" resizeMode='stretch' />
-         </VStack>}
-
+          })
+        }
         </ScrollView>
 
 

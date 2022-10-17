@@ -14,10 +14,10 @@ const Index = ({ idTransaction,type, titre, description, date, heure, operator }
   return (
     <Stack >
       <VStack ml={'3'} mt={'5'}>
-        {date &&
-                <Text textAlign='left'>{moment(date).format("LT")}</Text>
+       
+                <Text textAlign='left'>{moment().format("DD/MM/YYYY")}</Text>
 
-        }
+  
       </VStack>
       <TouchableOpacity onPress={() => setShowModal(true)} hitSlop={{ top: -10, bottom: 0 }}>
         <VStack margin='3' mt={'5'}>
@@ -32,11 +32,11 @@ const Index = ({ idTransaction,type, titre, description, date, heure, operator }
               <Text ml={'2'} fontSize="15" fontWeight="600">{titre}</Text>
               <Text ml={'2'} numberOfLines={1}>{type == "depot" ? `Depot effectue par :${description}` : `Retrait effectue par :${description}`}</Text>
             </VStack>
-            {heure  &&
+          
               <HStack>
-                <Text textAlign='right' fontSize="15" fontWeight="600">{moment(heure).format("LT")}</Text>
+                <Text textAlign='right' fontSize="15" fontWeight="600">{moment().format("HH:mm")}</Text>
               </HStack>
-            }
+            
           </HStack>
         </VStack>
       </TouchableOpacity>

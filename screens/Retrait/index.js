@@ -4,7 +4,9 @@ import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect } from "react";
 import * as SQLite from "expo-sqlite";
-
+import moment from "moment/moment";
+import "moment/locale/fr";
+moment.locale("fr");
 
 const Retrait = (props) => {
   const [tel, setTel] = useState("");
@@ -12,6 +14,8 @@ const Retrait = (props) => {
   const [user, setUser] = useState("");
   const [titre, setTitre] = useState("");
   const navigation = useNavigation();
+  const [heure, setHeure] = useState(moment());
+  const [date, setDate] = useState(moment());
   const [load, setLoad] = React.useState(false);
   const toast = useToast();
 
@@ -55,7 +59,7 @@ const Retrait = (props) => {
       (tx) => {
 
         try {
-          tx.executeSql("insert into operation (operateur,telephone,type, montant,idGerant ) values (?,?,?, ?, ?)", [titre, tel,'retrait', amount, user]);
+          tx.executeSql("insert into operation (operateur,telephone,type, montant,idGerant,dateTransaction,heuretransaction ) values (?,?,?, ?,?,?,?)", [titre, tel,'retrait', amount, user,date,heure]);
 
           tx.executeSql("select * from operation", [], (_, { rows }) => {
             console.log(rows._array);
