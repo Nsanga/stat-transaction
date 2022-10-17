@@ -6,9 +6,7 @@ import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import ItemTransaction from "../../components/ItemTransaction";
 import * as SQLite from "expo-sqlite";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import moment from "moment/moment";
-import "moment/locale/fr";
-moment.locale("fr");
+
 
 const Historique = ({route}) => {
   const [result, setResult] = useState([]);
@@ -106,7 +104,7 @@ const Historique = ({route}) => {
               <ItemTransaction key={i} titre={item.operateur}
                 operator={item.operateur}
                 description={"Depot effectue par " + user?.telephone + " vers " + item.telephone + ". Informations detaillees: Montant de transaction : 2000 FCFA, ID transaction : CI220822.1921.C04642, Frais : 0 FCFA, Commission : 0 FCFA, Montant Net du Credit : 2000 FCFA, Nouveau Solde : 20022.43 FCFA."}
-                date={moment(item.datetransaction).format("LL")} heure={"13:00"} />
+                date={item.datetransaction} heure={"13:00"} />
             </VStack>
           })
         }
