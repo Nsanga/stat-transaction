@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { Box, Button, Image, NativeBaseProvider, ScrollView, Stack, VStack, HStack, Heading, Text, Divider, Input, show, Pressable, useToast } from "native-base";
+import { Box, Button, Icon, NativeBaseProvider, ScrollView, Stack, VStack, HStack, Heading, Text, Divider, Input, show, Pressable, useToast } from "native-base";
 import {RefreshControl} from 'react-native';
 import ItemTransaction from "../../components/ItemTransaction"
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import emptyImage from "../../assets/empty_illustration.png";
 import { useEffect } from "react";
 import moment from "moment/moment";
 import "moment/locale/fr";
@@ -31,7 +30,6 @@ const Accueil = ({ navigation }) => {
   useEffect(() => {
     getUser();
     getTransactions();
-    console.log('casz',user?.nom)
     setRefreshing(false)
   }, [refreshing])
 
@@ -113,13 +111,15 @@ const Accueil = ({ navigation }) => {
         </Button>
       </HStack>
     </VStack>
-    <VStack margin={'4'} mt={5}>
+    <VStack margin={'4'} mt={5} mb={3}>
       <HStack>
         <HStack>
           <Text fontSize="16" fontWeight="600" textAlign={"left"}>Dernières transactions</Text>
         </HStack>
         <HStack mt={'-2.5'}>
-          <Button _text={{ color: "#1a87dd", fontWeight: "600", fontSize: "16", textAlign: "right" }} variant={'link'} ml='24' onPress={() => navigation.navigate("historique")}>Voir plus</Button>
+          <Button _text={{ color: "#1a87dd", fontWeight: "600", fontSize: "16", textAlign: "right" }} variant={'link'} ml='24' onPress={() => navigation.navigate("historique", {
+            user: user,
+          })}>Voir plus</Button>
         </HStack>
       </HStack>
     </VStack>
@@ -137,16 +137,15 @@ const Accueil = ({ navigation }) => {
         return <VStack key={i} mt={'-12'}>
           <ItemTransaction key={i} titre={item.operateur}
             operator={item.operateur}
-            description={"Depot effectue par "+user?.telephone+ " to " +item.telephone+ ". Informations detaillees: Montant de transaction : 2000 FCFA, ID transaction : CI220822.1921.C04642, Frais : 0 FCFA, Commission : 0 FCFA, Montant Net du Credit : 2000 FCFA, Nouveau Solde : 20022.43 FCFA."}
+            type={item.type}
+            description={user?.telephone+ " to " +item.telephone+ ". Informations detaillees: Montant de transaction : 2000 FCFA, ID transaction : CI220822.1921.C04642, Frais : 0 FCFA, Commission : 0 FCFA, Montant Net du Credit : 2000 FCFA, Nouveau Solde : 20022.43 FCFA."}
             heure={item.heuretransaction}
             idTransaction={item.idTransaction}/>
 
         </VStack>
       })}
      </> : 
-      <VStack alignSelf="center" mt="-2">
-      <Image source={emptyImage} alt="Alternate Text" width="166" height="133" resizeMode='stretch' />
-    </VStack>}
+      <Text alignItems={"center"} justifyContent={"center"} >Aucune transaction effectuer aujourd'hui</Text>}
     </ScrollView>
 
   </Stack>;

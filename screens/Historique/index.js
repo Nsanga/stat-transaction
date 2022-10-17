@@ -1,22 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import { Box, Button, Stack, VStack, HStack, Heading, Image, ScrollView, Input, Icon, Text } from "native-base";
+import { Box, Button,Text, Stack, VStack, HStack, Heading, Pressable, ScrollView, Input, Icon } from "native-base";
 import {RefreshControl} from 'react-native';
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import emptyImage from "../../assets/empty_illustration.png";
 import ItemTransaction from "../../components/ItemTransaction";
 import moment from "moment/moment";
 import * as SQLite from "expo-sqlite";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-const Historique = () => {
-  const [user, setUser] = useState(null);
-  const [load, setLoad] = React.useState(false);
-  const [tel, setTel] = useState("");
-  const [amount, setAmount] = useState("");
-  const [result, setResult] = useState(null);
+const Historique = ({route}) => {
+  const [result, setResult] = useState([]);
+  const [dataresult, setDataResult] = useState([]);
   const [refreshing, setRefreshing] = React.useState(false);
-
+  const { user } = route.params;
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
   }, []);
@@ -26,36 +24,39 @@ const Historique = () => {
   useEffect(() => {
     getUser();
     getTransactions();
-    console.log('casz',user?.nom)
+    typeTransaction("depot");
     setRefreshing(false)
+    console.log(user);
   }, [refreshing])
 
-  const getUser = async () => {
-    try {
-      const value = await AsyncStorage.getItem('@user');
-      const value2 = await JSON.parse(value);
-      await setUser(value2)
-      console.log("roll11",user.id);
-      console.log("roll22",value2.id);
-
-    } catch (e) {
-      // error reading value
+  const typeTransaction = async (type) => {
+    if(type == "depot")
+    {
+      setStep(0);
+    const  depot = dataresult.filter(x => x.type.includes("depot"))
+     await setResult(depot);
     }
+    else
+    {
+      setStep(1)
+      const  retrait = dataresult.filter(x => x.type.includes("retrait"))
+      await setResult(retrait);
+
+    }
+
   }
 
-  const getTransactions = async () => {
-
+  const getTransactions = () => {
+    
     // is text empty?
-     db.transaction(
-       async (tx) => {
+    db.transaction(
+     async (tx) => {
         try {
-            const value = await AsyncStorage.getItem('@user');
-            const value2 = await JSON.parse(value);
-          tx.executeSql("select * from operation where idGerant=? order by idTransaction desc;", [value2?.id], async (_, { rows }) => {
-            await setResult(rows._array);
-            console.log(rows._array)
-            
-          })
+        tx.executeSql("select * from operation where idGerant=? order by idTransaction desc limit 2;", [user?.id], async (_, { rows }) => {
+          await setDataResult(rows._array);
+          console.log(rows._array)
+          
+        })
         }
         catch (e) {
           console.log(e)
@@ -85,10 +86,10 @@ const Historique = () => {
       <VStack mt={3}>
         <VStack backgroundColor="#f6f6f6" borderRadius={'15'} width="347" height="60" alignSelf={'center'} >
           <HStack alignSelf='center'>
-            <Button mt="1.5" onPress={() => setStep(0)} backgroundColor={step == 0 ? '#1a87dd' : '#f6f6f6'} width="165" height="49" fontColor="black" _text={{ color: step == 0 ? '#fff' : '#000' }} borderRadius={'10'} fontSize={"lg"}>
+            <Button mt="1.5" onPress={() => typeTransaction("depot")} backgroundColor={step == 0 ? '#1a87dd' : '#f6f6f6'} width="165" height="49" fontColor="black" _text={{ color: step == 0 ? '#fff' : '#000' }} borderRadius={'10'} fontSize={"lg"}>
               Dépots
             </Button>
-            <Button mt="1.5" mb={'2'} onPress={() => setStep(1)} backgroundColor={step == 1 ? '#F47A08' : '#f6f6f6'} width="165" height="49" borderRadius={'10'} _text={{ color: step == 1 ? '#fff' : '#000' }} fontSize={"lg"}>
+            <Button mt="1.5" mb={'2'} onPress={() => typeTransaction("retrait")} backgroundColor={step == 1 ? '#F47A08' : '#f6f6f6'} width="165" height="49" borderRadius={'10'} _text={{ color: step == 1 ? '#fff' : '#000' }} fontSize={"lg"}>
               Retraits
             </Button>
           </HStack>
@@ -105,17 +106,11 @@ const Historique = () => {
            <>
             {result.map((item, i) => {
             return <VStack>
-
-
-            {
-              step == 0 ? <ItemTransaction key={i} titre={item.operateur}
+              <ItemTransaction key={i} titre={item.operateur}
                 operator={item.operateur}
-                description={"Depot effectue par "+ user?.telephone +" vers " + item.telephone + ". Informations detaillees: Montant de transaction : 2000 FCFA, ID transaction : CI220822.1921.C04642, Frais : 0 FCFA, Commission : 0 FCFA, Montant Net du Credit : 2000 FCFA, Nouveau Solde : 20022.43 FCFA."}
-                date={moment(item.datetransaction).format("LL")} heure={"13:00"} />
-                : <ItemTransaction key={i} titre={item.operateur} operator={item.operateur} description={"Retrait effectue de " + item.telephone + " vers "+ user?.phone +". Informations detaillees: Montant de transaction : 2000 FCFA, ID transaction : CI220822.1921.C04642, Frais : 0 FCFA, Commission : 0 FCFA, Montant Net du Credit : 2000 FCFA, Nouveau Solde : 20022.43 FCFA."}
-                  date={moment(item.datetransaction).format("LL")}
-                  heure={"15:00"} />
-            }
+                type={item.type}
+                description={user?.telephone + " vers " + item.telephone + ". Informations detaillees: Montant de transaction : 2000 FCFA, ID transaction : CI220822.1921.C04642, Frais : 0 FCFA, Commission : 0 FCFA, Montant Net du Credit : 2000 FCFA, Nouveau Solde : 20022.43 FCFA."}
+                date={item.datetransaction} heure={"13:00"} />
             </VStack>
           })}
           </> : 
