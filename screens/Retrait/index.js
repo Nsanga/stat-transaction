@@ -33,7 +33,7 @@ const Retrait = () =>{
   useEffect(() => {
     db.transaction((tx) => {
       tx.executeSql(
-        "create table if not exists operation (idTransaction integer primary key not null, operateur text, telephone text, montant text, idGerant int);"
+        "create table if not exists operation (idTransaction integer primary key not null, operateur text, telephone text,type text, montant text, idGerant int);"
       );
     });
   }, []);
@@ -56,7 +56,7 @@ const Retrait = () =>{
       (tx) => {
     
       try {
-         tx.executeSql("insert into operation (telephone, montant,idGerant ) values (?, ?, ?)", [tel, amount, user]);
+         tx.executeSql("insert into operation (telephone, montant,type,idGerant ) values (?, ?,?, ?)", [tel, amount,"retrait", user]);
           
          tx.executeSql("select * from operation", [], (_, { rows }) => {
         console.log(rows._array);

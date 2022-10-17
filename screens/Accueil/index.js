@@ -30,7 +30,6 @@ const Accueil = ({ navigation }) => {
   useEffect(() => {
     getUser();
     getTransactions();
-    console.log('casz',user?.nom)
     setRefreshing(false)
   }, [refreshing])
 
@@ -118,7 +117,9 @@ const Accueil = ({ navigation }) => {
           <Text fontSize="16" fontWeight="600" textAlign={"left"}>Dernières transactions</Text>
         </HStack>
         <HStack mt={'-2.5'}>
-          <Button _text={{ color: "#1a87dd", fontWeight: "600", fontSize: "16", textAlign: "right" }} variant={'link'} ml='24' onPress={() => navigation.navigate("historique")}>Voir plus</Button>
+          <Button _text={{ color: "#1a87dd", fontWeight: "600", fontSize: "16", textAlign: "right" }} variant={'link'} ml='24' onPress={() => navigation.navigate("historique", {
+            user: user,
+          })}>Voir plus</Button>
         </HStack>
       </HStack>
     </VStack>
