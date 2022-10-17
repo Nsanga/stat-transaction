@@ -14,7 +14,10 @@ const Index = ({ idTransaction,type, titre, description, date, heure, operator }
   return (
     <Stack >
       <VStack ml={'3'} mt={'5'}>
-        <Text textAlign='left'>{date}</Text>
+        {date &&
+                <Text textAlign='left'>{moment(date).format("LT")}</Text>
+
+        }
       </VStack>
       <TouchableOpacity onPress={() => setShowModal(true)} hitSlop={{ top: -10, bottom: 0 }}>
         <VStack margin='3' mt={'5'}>
