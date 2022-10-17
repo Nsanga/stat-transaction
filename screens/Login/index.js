@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useRef} from 'react';
+import React, {useRef,useEffect} from 'react';
 import { Input, Icon, Stack, Pressable, Box, ScrollView, KeyboardAvoidingView, useToast } from "native-base";
 import { Image, VStack, Heading, Link, Text, FormControl, Button } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -21,6 +21,12 @@ const Login = (props) => {
   const phoneRef = React.useRef();
 
 
+  useEffect(() => {
+    AsyncStorage.removeItem("@user")
+  }, [])
+
+
+
   const db = SQLite.openDatabase("db.db");
 
   const verification = () => {
@@ -36,13 +42,13 @@ const Login = (props) => {
       return (false);
 
     }
-    db.transaction(
-      (tx) => {
-        tx.executeSql("select * from utilisateur where telephone=? and password=?", [phone, password], (_, { rows }) => {
+     db.transaction(
+       async (tx)  => {
+        await tx.executeSql("select * from utilisateur where telephone=? and password=?", [phone, password], async (_, { rows })   => {
           setLoad(false);
           if (rows._array.length > 0) {
             try {
-              AsyncStorage.setItem('@user', JSON.stringify(rows._array[0]));
+               AsyncStorage.setItem('@user', JSON.stringify(rows._array[0]));
               navigation.navigate("navigation");
             } catch (e) {
               // saving error
@@ -61,6 +67,7 @@ const Login = (props) => {
           null
         );
       })
+
   };
 
 

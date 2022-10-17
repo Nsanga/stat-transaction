@@ -73,7 +73,7 @@ const Inscription = () => {
 
   return <Stack m={'8'}>
     <ScrollView showsVerticalScrollIndicator={false}>
-      <KeyboardAvoidingView behavior="position" >
+      <KeyboardAvoidingView behavior="padding" >
         <VStack>
           <Box alignItem='center' justifyContent='center'>
             <VStack>

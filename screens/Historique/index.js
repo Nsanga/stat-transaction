@@ -1,14 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import { Box, Button, Stack, VStack, HStack, Heading, Pressable, ScrollView, Input, Icon } from "native-base";
+import { Box, Button, Stack, VStack, HStack, Heading, Image, ScrollView, Input, Icon, Text } from "native-base";
 import {RefreshControl} from 'react-native';
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import emptyImage from "../../assets/empty_illustration.png";
 import ItemTransaction from "../../components/ItemTransaction";
+import moment from "moment/moment";
 import * as SQLite from "expo-sqlite";
 
 
 const Historique = () => {
-  const [result, setResult] = useState([]);
+  const [user, setUser] = useState(null);
+  const [load, setLoad] = React.useState(false);
+  const [tel, setTel] = useState("");
+  const [amount, setAmount] = useState("");
+  const [result, setResult] = useState(null);
   const [refreshing, setRefreshing] = React.useState(false);
 
   const onRefresh = React.useCallback(() => {
@@ -18,18 +24,35 @@ const Historique = () => {
   const db = SQLite.openDatabase("db.db");
 
   useEffect(() => {
+    getUser();
     getTransactions();
+    console.log('casz',user?.nom)
     setRefreshing(false)
   }, [refreshing])
 
-  const getTransactions = () => {
-    
+  const getUser = async () => {
+    try {
+      const value = await AsyncStorage.getItem('@user');
+      const value2 = await JSON.parse(value);
+      await setUser(value2)
+      console.log("roll11",user.id);
+      console.log("roll22",value2.id);
+
+    } catch (e) {
+      // error reading value
+    }
+  }
+
+  const getTransactions = async () => {
+
     // is text empty?
-    db.transaction(
-      (tx) => {
+     db.transaction(
+       async (tx) => {
         try {
-          tx.executeSql("select * from operation", [user?.id], (_, { rows }) => {
-            setResult(rows._array);
+            const value = await AsyncStorage.getItem('@user');
+            const value2 = await JSON.parse(value);
+          tx.executeSql("select * from operation where idGerant=? order by idTransaction desc;", [value2?.id], async (_, { rows }) => {
+            await setResult(rows._array);
             console.log(rows._array)
             
           })
@@ -78,22 +101,28 @@ const Historique = () => {
               onRefresh={onRefresh}
             />
           }>
-          {result.map((item, i) => {
+            {result?.length ?
+           <>
+            {result.map((item, i) => {
             return <VStack>
 
 
             {
               step == 0 ? <ItemTransaction key={i} titre={item.operateur}
                 operator={item.operateur}
-                description={"Depot effectue par " + user?.telephone + " vers " + item.telephone + ". Informations detaillees: Montant de transaction : 2000 FCFA, ID transaction : CI220822.1921.C04642, Frais : 0 FCFA, Commission : 0 FCFA, Montant Net du Credit : 2000 FCFA, Nouveau Solde : 20022.43 FCFA."}
+                description={"Depot effectue par "+ user?.telephone +" vers " + item.telephone + ". Informations detaillees: Montant de transaction : 2000 FCFA, ID transaction : CI220822.1921.C04642, Frais : 0 FCFA, Commission : 0 FCFA, Montant Net du Credit : 2000 FCFA, Nouveau Solde : 20022.43 FCFA."}
                 date={moment(item.datetransaction).format("LL")} heure={"13:00"} />
-                : <ItemTransaction key={i} titre={item.operateur} operator={item.operateur} description={"Retrait effectue de " + item.telephone + " vers " + user?.telephone + ". Informations detaillees: Montant de transaction : 2000 FCFA, ID transaction : CI220822.1921.C04642, Frais : 0 FCFA, Commission : 0 FCFA, Montant Net du Credit : 2000 FCFA, Nouveau Solde : 20022.43 FCFA."}
+                : <ItemTransaction key={i} titre={item.operateur} operator={item.operateur} description={"Retrait effectue de " + item.telephone + " vers "+ user?.phone +". Informations detaillees: Montant de transaction : 2000 FCFA, ID transaction : CI220822.1921.C04642, Frais : 0 FCFA, Commission : 0 FCFA, Montant Net du Credit : 2000 FCFA, Nouveau Solde : 20022.43 FCFA."}
                   date={moment(item.datetransaction).format("LL")}
                   heure={"15:00"} />
             }
             </VStack>
-          })
-        }
+          })}
+          </> : 
+           <VStack alignItems="center" justifyContent={'center'} mt={24}>
+           <Image source={emptyImage} alt="Alternate Text" width="166" height="133" resizeMode='stretch' />
+         </VStack>}
+
         </ScrollView>
 
 

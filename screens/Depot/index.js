@@ -33,7 +33,7 @@ const Depot = (props) => {
   useEffect(() => {
     db.transaction((tx) => {
       tx.executeSql(
-        "create table if not exists operation (idTransaction integer primary key not null, operateur text, telephone text, montant text, dateTransaction datetime, heuretransaction datetime, idGerant int);"
+        "create table if not exists operation (idTransaction integer primary key not null, operateur text, telephone text, montant text, dateTransaction datetime, heuretransaction datetime, type text, idGerant int);"
       );
     });
   }, []);

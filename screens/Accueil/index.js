@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Box, Button, Icon, NativeBaseProvider, ScrollView, Stack, VStack, HStack, Heading, Text, Divider, Input, show, Pressable, useToast } from "native-base";
+import { Box, Button, Image, NativeBaseProvider, ScrollView, Stack, VStack, HStack, Heading, Text, Divider, Input, show, Pressable, useToast } from "native-base";
 import {RefreshControl} from 'react-native';
 import ItemTransaction from "../../components/ItemTransaction"
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import emptyImage from "../../assets/empty_illustration.png";
 import { useEffect } from "react";
 import moment from "moment/moment";
 import "moment/locale/fr";
@@ -12,12 +13,12 @@ import * as SQLite from "expo-sqlite";
 
 const Accueil = ({ navigation }) => {
   const [show, setShow] = useState(false);
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(null);
   const [load, setLoad] = React.useState(false);
   const toast = useToast();
   const [tel, setTel] = useState("");
   const [amount, setAmount] = useState("");
-  const [result, setResult] = useState([]);
+  const [result, setResult] = useState(null);
   const [refreshing, setRefreshing] = React.useState(false);
 
   const onRefresh = React.useCallback(() => {
@@ -30,7 +31,7 @@ const Accueil = ({ navigation }) => {
   useEffect(() => {
     getUser();
     getTransactions();
-    console.log('casz',user)
+    console.log('casz',user?.nom)
     setRefreshing(false)
   }, [refreshing])
 
@@ -39,7 +40,9 @@ const Accueil = ({ navigation }) => {
     try {
       const value = await AsyncStorage.getItem('@user');
       const value2 = await JSON.parse(value);
-      await setUser(value2);
+      await setUser(value2)
+      console.log("roll11",user.id);
+      console.log("roll22",value2.id);
 
     } catch (e) {
       // error reading value
@@ -47,14 +50,16 @@ const Accueil = ({ navigation }) => {
   }
 
 
-  const getTransactions = () => {
-    
+  const getTransactions = async () => {
+
     // is text empty?
-    db.transaction(
-      (tx) => {
+     db.transaction(
+       async (tx) => {
         try {
-          tx.executeSql("select * from operation where idGerant=? order by idTransaction desc limit 2", [user.id], (_, { rows }) => {
-            setResult(rows._array);
+            const value = await AsyncStorage.getItem('@user');
+            const value2 = await JSON.parse(value);
+          tx.executeSql("select * from operation where idGerant=? order by idTransaction desc limit 2;", [value2?.id], async (_, { rows }) => {
+            await setResult(rows._array);
             console.log(rows._array)
             
           })
@@ -108,7 +113,7 @@ const Accueil = ({ navigation }) => {
         </Button>
       </HStack>
     </VStack>
-    <VStack margin={'4'} mt={5} mb={3}>
+    <VStack margin={'4'} mt={5}>
       <HStack>
         <HStack>
           <Text fontSize="16" fontWeight="600" textAlign={"left"}>Dernières transactions</Text>
@@ -126,16 +131,22 @@ const Accueil = ({ navigation }) => {
         onRefresh={onRefresh}
       />
     }>
+      {result?.length ?
+     <>
       {result.map((item, i) => {
-        return <VStack mt={'-12'}>
+        return <VStack key={i} mt={'-12'}>
           <ItemTransaction key={i} titre={item.operateur}
             operator={item.operateur}
             description={"Depot effectue par "+user?.telephone+ " to " +item.telephone+ ". Informations detaillees: Montant de transaction : 2000 FCFA, ID transaction : CI220822.1921.C04642, Frais : 0 FCFA, Commission : 0 FCFA, Montant Net du Credit : 2000 FCFA, Nouveau Solde : 20022.43 FCFA."}
-            heure={moment(item.heuretransaction).format("LT")}
+            heure={item.heuretransaction}
             idTransaction={item.idTransaction}/>
 
         </VStack>
       })}
+     </> : 
+      <VStack alignSelf="center" mt="-2">
+      <Image source={emptyImage} alt="Alternate Text" width="166" height="133" resizeMode='stretch' />
+    </VStack>}
     </ScrollView>
 
   </Stack>;
